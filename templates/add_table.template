@@ -1,0 +1,45 @@
+<?php
+
+use Arrilot\BitrixMigrations\BaseMigrations\WordpressMigration;
+use Arrilot\BitrixMigrations\Exceptions\MigrationException;
+use Bitrix\Highloadblock\HighloadBlockTable;
+
+class __className__ extends WordpressMigration
+{
+    protected $table = '';
+
+    /**
+     * Run the migration.
+     *
+     * @return mixed
+     * @throws MigrationException
+     */
+    public function up()
+    {
+        global $wpdb;
+
+        $sql = "
+            CREATE TABLE " . $this->table . " (
+            id bigint(20) NOT NULL auto_increment,
+            some_column varchar(50) NOT NULL,
+            PRIMARY KEY (id)
+            )
+            {$this->get_collation()};
+        ";
+
+        $result = dbDelta($sql);
+    }
+
+    /**
+     * Reverse the migration.
+     *
+     * @return mixed
+     * @throws MigrationException
+     */
+    public function down()
+    {
+        global $wpdb;
+
+        $wpdb->query("DROP TABLE IF EXISTS $this->table");
+    }
+}

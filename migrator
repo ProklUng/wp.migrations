@@ -1,0 +1,42 @@
+#!/usr/bin/env php
+<?php
+
+use Arrilot\BitrixMigrations\Commands\ArchiveCommand;
+use Arrilot\BitrixMigrations\Commands\MakeCommand;
+use Arrilot\BitrixMigrations\Commands\InstallCommand;
+use Arrilot\BitrixMigrations\Commands\MigrateCommand;
+use Arrilot\BitrixMigrations\Commands\RollbackCommand;
+use Arrilot\BitrixMigrations\Commands\TemplatesCommand;
+use Arrilot\BitrixMigrations\Commands\StatusCommand;
+use Arrilot\BitrixMigrations\Migrator;
+use Arrilot\BitrixMigrations\Storages\WordpressDatabaseStorage;
+use Arrilot\BitrixMigrations\TemplatesCollection;
+use Symfony\Component\Console\Application;
+
+$_SERVER['DOCUMENT_ROOT'] = __DIR__.'/..';
+$DOCUMENT_ROOT = $_SERVER["DOCUMENT_ROOT"];
+require __DIR__.'/../wp-blog-header.php';
+
+$config = [
+    'table' => 'wp_arrilot_migrations',
+    'dir' => './app/arrilot_migrations',
+    'dir_archive' => './app/archive_migrations', // not required. default = "archive"
+    'use_transaction' => true, // not required. default = false
+    'default_fields' => []
+];
+
+$database = new WordpressDatabaseStorage($config['table']);
+$templates = new TemplatesCollection();
+$templates->registerBasicTemplates();
+
+$migrator = new Migrator($config, $templates, $database);
+
+$app = new Application('Migrator');
+$app->add(new MakeCommand($migrator));
+$app->add(new InstallCommand($config['table'], $database));
+$app->add(new MigrateCommand($migrator));
+$app->add(new RollbackCommand($migrator));
+$app->add(new TemplatesCommand($templates));
+$app->add(new StatusCommand($migrator));
+$app->add(new ArchiveCommand($migrator));
+$app->run();

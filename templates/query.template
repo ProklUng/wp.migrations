@@ -1,0 +1,32 @@
+<?php
+
+use Arrilot\BitrixMigrations\BaseMigrations\WordpressMigration;
+use Arrilot\BitrixMigrations\Exceptions\MigrationException;
+use Bitrix\Highloadblock\HighloadBlockTable;
+
+class __className__ extends WordpressMigration
+{
+    /**
+     * Run the migration.
+     *
+     * @return mixed
+     * @throws MigrationException
+     */
+    public function up()
+    {
+        $sql = '';
+
+        $this->db->query($sql);
+    }
+
+    /**
+     * Reverse the migration.
+     *
+     * @return mixed
+     * @throws MigrationException
+     */
+    public function down()
+    {
+        return false;
+    }
+}
