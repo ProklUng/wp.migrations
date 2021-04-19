@@ -27,7 +27,7 @@
     },
     "require": {
         "php": ">=7.1",
-        "symfony/console": "|~4 | ~5"
+        "symfony/console": "~4 | ~5"
     },
     "bin": [
         "migrator"
