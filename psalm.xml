@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<psalm
+    errorLevel="1"
+    resolveFromConfigFile="true"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://getpsalm.org/schema/config"
+    xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+    allowStringToStandInForClass="true"
+    allowCoercionFromStringToClassConst="true"
+    findUnusedPsalmSuppress="true"
+    skipChecksOnUnresolvableIncludes="true"
+>
+    <plugins>
+        <pluginClass class="Psalm\SymfonyPsalmPlugin\Plugin"/>
+        <pluginClass class="Psalm\MockeryPlugin\Plugin"/>
+    </plugins>
+    <projectFiles>
+        <directory name="/"/>
+        <ignoreFiles>
+            <directory name="vendor"/>
+        </ignoreFiles>
+    </projectFiles>
+
+    <issueHandlers>
+        <MissingConstructor>
+            <errorLevel type="suppress">
+                <directory name="/"/>
+            </errorLevel>
+        </MissingConstructor>
+        <PropertyNotSetInConstructor>
+            <errorLevel type="suppress">
+                <directory name="/"/>
+            </errorLevel>
+        </PropertyNotSetInConstructor>
+        <MixedPropertyFetch>
+            <errorLevel type="suppress">
+                <directory name="/"/>
+            </errorLevel>
+        </MixedPropertyFetch>
+        <DocblockTypeContradiction>
+            <errorLevel type="suppress">
+                <file name="src/Migrator.php"/>
+            </errorLevel>
+        </DocblockTypeContradiction>
+        <InvalidGlobal>
+            <errorLevel type="suppress">
+                <directory name="/"/>
+            </errorLevel>
+        </InvalidGlobal>
+        <MixedMethodCall>
+            <errorLevel type="suppress">
+                <directory name="/"/>
+            </errorLevel>
+        </MixedMethodCall>
+        <UnresolvableInclude>
+            <errorLevel type="suppress">
+                <directory name="/"/>
+            </errorLevel>
+        </UnresolvableInclude>
+        <ImplementedReturnTypeMismatch>
+            <errorLevel type="suppress">
+                <directory name="/"/>
+            </errorLevel>
+        </ImplementedReturnTypeMismatch>
+        <UndefinedDocblockClass>
+            <errorLevel type="suppress">
+                <directory name="/"/>
+            </errorLevel>
+        </UndefinedDocblockClass>
+        <UndefinedClass>
+            <errorLevel type="suppress">
+                <directory name="/"/>
+            </errorLevel>
+        </UndefinedClass>
+        <UndefinedFunction>
+            <errorLevel type="suppress">
+                <directory name="/"/>
+            </errorLevel>
+        </UndefinedFunction>
+        <MixedInferredReturnType>
+            <errorLevel type="suppress">
+                <directory name="/"/>
+            </errorLevel>
+        </MixedInferredReturnType>
+        <MixedReturnStatement>
+            <errorLevel type="suppress">
+                <directory name="/"/>
+            </errorLevel>
+        </MixedReturnStatement>
+        <MixedAssignment>
+            <errorLevel type="suppress">
+                <directory name="/"/>
+            </errorLevel>
+        </MixedAssignment>
+        <MissingReturnType>
+            <errorLevel type="suppress">
+                <directory name="src/Commands"/>
+            </errorLevel>
+        </MissingReturnType>
+    </issueHandlers>
+</psalm>

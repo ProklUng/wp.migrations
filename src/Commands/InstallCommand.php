@@ -25,7 +25,7 @@ class InstallCommand extends AbstractCommand
     protected $table;
 
     /**
-     * @var string $defaultName Команда.
+     * @var string|null $defaultName Команда.
      */
     protected static $defaultName = 'install';
 

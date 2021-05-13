@@ -18,7 +18,7 @@ class StatusCommand extends AbstractCommand
     protected $migrator;
 
     /**
-     * @var string $defaultName Команда.
+     * @var string|null $defaultName Команда.
      */
     protected static $defaultName = 'status';
 

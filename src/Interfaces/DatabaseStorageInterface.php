@@ -47,4 +47,25 @@ interface DatabaseStorageInterface
      * @return void
      */
     public function removeSuccessfulMigrationFromLog(string $name);
+
+    /**
+     * Start transaction.
+     *
+     * @return void
+     */
+    public function startTransaction();
+
+    /**
+     * Commit transaction
+     *
+     * @return void
+     */
+    public function commitTransaction();
+
+    /**
+     * Rollback transaction.
+     *
+     * @return void
+     */
+    public function rollbackTransaction();
 }

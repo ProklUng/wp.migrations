@@ -103,15 +103,15 @@ class WordpressDatabaseStorage implements DatabaseStorageInterface
     }
 
     /**
-     * Start transaction
+     * @inheritDoc
      */
-    public function startTransaction()
+    public function startTransaction() : void
     {
         $this->db->query('START TRANSACTION');
     }
 
     /**
-     * Commit transaction
+     * @inheritDoc
      */
     public function commitTransaction()
     {
@@ -119,7 +119,7 @@ class WordpressDatabaseStorage implements DatabaseStorageInterface
     }
 
     /**
-     * Rollback transaction
+     * @inheritDoc
      */
     public function rollbackTransaction()
     {

@@ -54,7 +54,7 @@ class WordpressMigration implements MigrationInterface
      */
     public function useTransaction(bool $default = false) : bool
     {
-        if (!is_null($this->use_transaction)) {
+        if ($this->use_transaction) {
             return $this->use_transaction;
         }
 

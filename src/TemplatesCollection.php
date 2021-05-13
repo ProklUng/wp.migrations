@@ -94,9 +94,9 @@ class TemplatesCollection
     {
         $template = $this->normalizeTemplateDuringRegistration($template);
 
-        $this->templates[$template['name']] = $template;
+        $this->templates[(string)$template['name']] = $template;
 
-        $this->registerTemplateAliases($template, $template['aliases']);
+        $this->registerTemplateAliases($template, (array)$template['aliases']);
     }
 
     /**
@@ -165,6 +165,7 @@ class TemplatesCollection
      */
     protected function registerTemplateAliases(array $template, array $aliases = []) : void
     {
+        /** @var string $alias */
         foreach ($aliases as $alias) {
             $template['is_alias'] = true;
             $template['name'] = $alias;

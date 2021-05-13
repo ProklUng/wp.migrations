@@ -32,6 +32,10 @@ class Helpers
      */
     public static function rGlob($pattern, $flags = 0) : array
     {
+        if (!is_string($pattern)) {
+            return [];
+        }
+
         $files = glob($pattern, $flags);
         foreach (glob(dirname($pattern).'/*', GLOB_ONLYDIR|GLOB_NOSORT) as $dir) {
             $files = array_merge($files, static::rGlob($dir.'/'.basename($pattern), $flags));

@@ -19,7 +19,7 @@ class MigrateCommand extends AbstractCommand
     protected $migrator;
 
     /**
-     * @var string $defaultName Команда.
+     * @var string|null $defaultName Команда.
      */
     protected static $defaultName = 'migrate';
 
@@ -56,6 +56,9 @@ class MigrateCommand extends AbstractCommand
 
         if (!empty($toRun)) {
             foreach ($toRun as $migration) {
+                /**
+                 * @var string $migration
+                 */
                 $this->migrator->runMigration($migration);
                 $this->message("<info>Migrated:</info> {$migration}.php");
             }

@@ -75,14 +75,8 @@ class Migrator
         $this->dir_archive = isset($config['dir_archive']) ? $config['dir_archive'] : 'archive';
         $this->use_transaction = isset($config['use_transaction']) ? $config['use_transaction'] : false;
 
-//        if (isset($config['default_fields']) && is_array($config['default_fields'])) {
-//            foreach ($config['default_fields'] as $class => $default_fields) {
-//
-//            }
-//        }
-
         $this->templates = $templates;
-        $this->database = $database ?: new WordpressDatabaseStorage($config['table']);
+        $this->database = $database ?: new WordpressDatabaseStorage((string)$config['table']);
         $this->files = $files ?: new FileStorage();
     }
 
@@ -97,7 +91,7 @@ class Migrator
      * @return string
      * @throws Exception
      */
-    public function createMigration($name, $templateName, array $replace = [], $subDir = '') : string
+    public function createMigration(string $name, string $templateName, array $replace = [], string $subDir = '') : string
     {
         $targetDir = $this->dir;
         $subDir = trim(str_replace('\\', '/', $subDir), '/');
@@ -134,6 +128,7 @@ class Migrator
             return $ran;
         }
 
+        /** @var string $migration */
         foreach ($migrations as $migration) {
             $this->runMigration($migration);
             $ran[] = $migration;
@@ -285,6 +280,7 @@ class Migrator
         $this->files->createDirIfItDoesNotExist("$this->dir/$toDir");
 
         $count = 0;
+        /** @var string $migration */
         foreach ($files as $migration) {
             $from = $this->getMigrationFilePath($migration);
             $to = "$this->dir/$toDir/$migration.php";
@@ -316,7 +312,7 @@ class Migrator
 
         $usec = substr($usec, 2, 6);
 
-        return date('Y_m_d_His', $sec).'_'.$usec.'_'.$name;
+        return date('Y_m_d_His', (int)$sec).'_'.$usec.'_'.$name;
     }
 
     /**
@@ -346,6 +342,10 @@ class Migrator
      */
     protected function replacePlaceholdersInTemplate(string $template, array $replace) : string
     {
+        /**
+         * @var string $placeholder
+         * @var string $value
+         */
         foreach ($replace as $placeholder => $value) {
             $template = str_replace("__{$placeholder}__", $value, $template);
         }
@@ -419,7 +419,6 @@ class Migrator
     {
         if ($migration->useTransaction($this->use_transaction)) {
             $this->database->startTransaction();
-            //Logger::log("Начало транзакции", Logger::COLOR_LIGHT_BLUE);
             try {
                 $callback();
             } catch (Exception $e) {
@@ -428,7 +427,6 @@ class Migrator
                 throw $e;
             }
             $this->database->commitTransaction();
-            // Logger::log("Конец транзакции", Logger::COLOR_LIGHT_BLUE);
         } else {
             $callback();
         }

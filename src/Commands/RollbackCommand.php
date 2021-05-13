@@ -21,7 +21,7 @@ class RollbackCommand extends AbstractCommand
     protected $migrator;
 
     /**
-     * @var string $defaultName Команда.
+     * @var string|null $defaultName Команда.
      */
     protected static $defaultName = 'rollback';
 
@@ -63,7 +63,7 @@ class RollbackCommand extends AbstractCommand
             return 1;
         }
 
-        $migration = $ran[count($ran) - 1];
+        $migration = (string)$ran[count($ran) - 1];
 
         $this->input->getOption('hard')
             ? $this->hardRollbackMigration($migration)

@@ -20,7 +20,7 @@ class ArchiveCommand extends AbstractCommand
     protected $migrator;
 
     /**
-     * @var string $defaultName Команда.
+     * @var string|null $defaultName Команда.
      */
     protected static $defaultName = 'archive';
 
@@ -55,7 +55,7 @@ class ArchiveCommand extends AbstractCommand
     protected function fire() : int
     {
         $files = $this->migrator->getAllMigrations();
-        $without = $this->input->getOption('without') ?: 0;
+        $without = (int)$this->input->getOption('without') ?: 0;
         if ($without > 0) {
             $files = array_slice($files, 0, $without * -1);
         }

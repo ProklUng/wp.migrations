@@ -21,7 +21,7 @@ class TemplatesCommand extends AbstractCommand
     protected $collection;
 
     /**
-     * @var string $defaultName Команда.
+     * @var string|null $defaultName Команда.
      */
     protected static $defaultName = 'templates';
 
@@ -69,17 +69,17 @@ class TemplatesCommand extends AbstractCommand
     private function collectRows() : array
     {
         $rows = collect($this->collection->all())
-            ->filter(function ($template) {
+            ->filter(function (array $template) : bool {
                 return $template['is_alias'] === false;
             })
             ->sortBy('name')
-            ->map(function ($template) {
+            ->map(function (array $template) : array {
                 $row = [];
 
-                $names = array_merge([$template['name']], $template['aliases']);
+                $names = array_merge([$template['name']], (array)$template['aliases']);
                 $row[] = implode("\n/ ", $names);
-                $row[] = wordwrap($template['path'], 65, "\n", true);
-                $row[] = wordwrap($template['description'], 25, "\n", true);
+                $row[] = wordwrap((string)$template['path'], 65, "\n", true);
+                $row[] = wordwrap((string)$template['description'], 25, "\n", true);
 
                 return $row;
             });

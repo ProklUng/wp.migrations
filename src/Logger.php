@@ -26,12 +26,12 @@ class Logger
     const COLOR_WHITE = '1;37';
 
     /**
-     * @param string $string
-     * @param mixed  $foreground_color
+     * @param string      $string
+     * @param string|null $foreground_color
      *
      * @return void
      */
-    public static function log(string $string, $foreground_color = null) : void
+    public static function log(string $string, ?string $foreground_color = null) : void
     {
         $colored_string = "";
 

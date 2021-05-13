@@ -70,9 +70,9 @@ class MakeCommand extends AbstractCommand
     {
         $migration = $this->migrator->createMigration(
             $this->input->getArgument('name'),
-            $this->input->getOption('template'),
+            (string)$this->input->getOption('template'),
             [],
-            $this->input->getOption('directory')
+            (string)$this->input->getOption('directory')
         );
 
         $this->message("<info>Migration created:</info> {$migration}.php");
