@@ -118,9 +118,9 @@ class TemplatesCollection
      *
      * @return string
      */
-    public function selectTemplate($template) : string
+    public function selectTemplate(?string $template) : string
     {
-        if (is_null($template)) {
+        if (!$template) {
             return 'default';
         }
 
