@@ -36,7 +36,7 @@ class StatusCommand extends AbstractCommand
     }
 
     /**
-     * Configures the current command.
+     * @inheritDoc
      */
     protected function configure()
     {
@@ -44,7 +44,7 @@ class StatusCommand extends AbstractCommand
     }
 
     /**
-     * Execute the console command.
+     * @inheritDoc
      *
      * @return integer
      */

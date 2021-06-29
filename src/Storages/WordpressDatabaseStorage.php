@@ -79,7 +79,7 @@ class WordpressDatabaseStorage implements DatabaseStorageInterface
     /**
      * Save migration name to the database to prevent it from running again.
      *
-     * @param string $name
+     * @param string $name Миграция.
      *
      * @return void
      */
@@ -93,7 +93,7 @@ class WordpressDatabaseStorage implements DatabaseStorageInterface
     /**
      * Remove a migration name from the database so it can be run again.
      *
-     * @param string $name
+     * @param string $name Миграция.
      *
      * @return void
      */

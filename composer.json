@@ -19,7 +19,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Arrilot\\BitrixMigrations\\": "src"
+            "Arrilot\\BitrixMigrations\\": "src",
+            "Arrilot\\BitrixMigrations\\Tests\\": "tests"
         },
         "exclude-from-classmap": [
             "Tests/"
@@ -32,9 +33,7 @@
 
     },
     "require-dev": {
-        "vimeo/psalm": "^4.3",
-        "psalm/plugin-symfony": "^2.1",
-        "psalm/plugin-mockery": "^0.7.0"
+        "proklung/phpunit-testing-tools": "^1.3"
     },
     "bin": [
         "migrator"

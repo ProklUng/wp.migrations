@@ -45,8 +45,8 @@ abstract class AbstractCommand extends Command
     /**
      * Executes the current command.
      *
-     * @param InputInterface  $input  An InputInterface instance
-     * @param OutputInterface $output An OutputInterface instance
+     * @param InputInterface  $input  An InputInterface instance.
+     * @param OutputInterface $output An OutputInterface instance.
      *
      * @return string|integer null or 0 if everything went fine, or an error code.
      */

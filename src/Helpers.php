@@ -11,7 +11,7 @@ class Helpers
     /**
      * Convert a value to studly caps case.
      *
-     * @param string $value
+     * @param string $value Value.
      *
      * @return string
      */
@@ -25,7 +25,7 @@ class Helpers
     /**
      * Рекурсивный поиск миграций с поддирректориях.
      *
-     * @param mixed   $pattern
+     * @param mixed   $pattern Pattern.
      * @param integer $flags   Does not support flag GLOB_BRACE
      *
      * @return array
@@ -38,7 +38,7 @@ class Helpers
 
         $files = glob($pattern, $flags);
         foreach (glob(dirname($pattern).'/*', GLOB_ONLYDIR|GLOB_NOSORT) as $dir) {
-            $files = array_merge($files, static::rGlob($dir.'/'.basename($pattern), $flags));
+            $files = array_merge($files, static::rGlob($dir . '/' . basename($pattern), $flags));
         }
 
         return $files;

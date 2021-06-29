@@ -68,8 +68,12 @@ class Migrator
      * @param DatabaseStorageInterface|null $database  БД.
      * @param FileStorageInterface|null     $files     Файлы.
      */
-    public function __construct($config, TemplatesCollection $templates, DatabaseStorageInterface $database = null, FileStorageInterface $files = null)
-    {
+    public function __construct(
+        $config,
+        TemplatesCollection $templates,
+        ?DatabaseStorageInterface $database = null,
+        ?FileStorageInterface $files = null
+    ) {
         $this->config = $config;
         $this->dir = $config['dir'];
         $this->dir_archive = isset($config['dir_archive']) ? $config['dir_archive'] : 'archive';

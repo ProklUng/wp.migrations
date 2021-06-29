@@ -31,7 +31,7 @@ class TemplatesCommand extends AbstractCommand
      * @param TemplatesCollection $collection Коллекция шаблонов.
      * @param string|null         $name       Команда.
      */
-    public function __construct(TemplatesCollection $collection, $name = null)
+    public function __construct(TemplatesCollection $collection, ?string $name = null)
     {
         $this->collection = $collection;
 
@@ -39,7 +39,7 @@ class TemplatesCommand extends AbstractCommand
     }
 
     /**
-     * Configures the current command.
+     * @inheritDoc
      */
     protected function configure()
     {
